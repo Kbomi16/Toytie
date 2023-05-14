@@ -1,13 +1,12 @@
 <template>
   <li>
     <h3>{{ fullName }}</h3>
-    <h4>${{ rate }}/hour</h4>
     <div>
-      <span v-for="area in areas" :key="area">{{ area }}</span>
+      <base-badge v-for="area in areas" :key="area" :type="area" :title="area"></base-badge>
     </div>
     <div class="actions">
-      <router-link :to="talentContactLink">Contact</router-link>
-      <router-link :to="talentDetailsLink">정보 보기</router-link>
+      <base-button mode="outline" link :to="talentMatchingLink">Matching</base-button>
+      <base-button link :to="talentDetailsLink">정보 보기</base-button>
 
     </div>
   </li>
@@ -18,10 +17,10 @@
     props: ['id', 'firstName', 'lastName', 'areas'],
     computed: {
       fullName() {
-        return this.firstName + ' ' + this.lastName
+        return this.lastName + this.firstName
       },
-      talentContactLink() {
-        return this.$route.path + '/' + this.id + '/contact'
+      talentMatchingLink() {
+        return this.$route.path + '/' + this.id + '/matching'
       },
       talentDetailsLink() {
         return this.$route.path + '/' + this.id

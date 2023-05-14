@@ -1,32 +1,32 @@
-import mutations from './mutations.js'
-import actions from './actions.js'
-import getters from './getters.js'
+import mutations from './mutations.js';
+import actions from './actions.js';
+import getters from './getters.js';
 
 export default {
-  namespaced:true,
+  namespaced: true,
   state() {
     return {
+      lastFetch: null,
       talents: [
         {
           id: 'c1',
           firstName: '보미',
           lastName: '김',
-          areas: ['frontend', 'career'],
+          areas: ['vue', 'javascript'],
           description:
-            "I'm Maximilian and I've worked as a freelance web developer for years. Let me help you become a developer as well!"
+            "현재 대학생이고 프론트엔드 개발자가 되고 싶습니다.",
         },
         {
           id: 'c2',
-          firstName: 'Julie',
-          lastName: 'Jones',
-          areas: ['frontend', 'backend', 'career'],
+          firstName: '보파',
+          lastName: '김',
+          areas: ['java', 'mysql'],
           description:
-            'I am Julie and as a senior developer in a big tech company, I can help you get your first job or progress in your current role.'
-        }
+          "현재 대학생이고 백엔드 개발자가 되고 싶습니다."        }
       ]
-    }
+    };
   },
   mutations,
   actions,
   getters
-}
+};

@@ -3,7 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import TalentDetail from '../views/talents/TalentDetail.vue'
 import TalentList from '../views/talents/TalentList.vue';
 import TalentRegister from '../views/talents/TalentRegister.vue';
-import ContactTalent from '../views/requests/ContactTalent.vue';
+import MatchingTalent from '../views/requests/MatchingTalent.vue';
 import RequestReceived from '../views/requests/RequestReceived.vue';
 import NotFound from '../views/NotFound.vue';
 
@@ -29,9 +29,10 @@ const routes = [
     //인재 상세
     path: '/talents/:id', 
     component: TalentDetail, 
+    props: true,
     children: [
-      {path: '/contact', 
-      component: ContactTalent},
+      {path: '/matching', 
+      component: MatchingTalent},
     ] },
   { 
     //인재 등록

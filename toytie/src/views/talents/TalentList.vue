@@ -1,21 +1,23 @@
 <template>
+  <section>필터</section>
   <section>
-    필터
-  </section>
-  <section>
+    <base-card>
     <div class="controls">
-      <button>새로고침</button>
-      <router-link to="/register">인재 등록하기</router-link>
+      <base-button mode="outline">새로고침</base-button>
+      <base-button link to="/register">인재 등록하기</base-button>
     </div>
     <ul v-if="hasTalents">
-      <talent-item v-for="talent in filteredTalents" 
+      <talent-item 
+      v-for="talent in filteredTalents" 
       :key="talent.id" 
       :id="talent.id"
       :first-name="talent.firstName"
       :last-name="talent.lastName"
-      :areas="talent.areas"></talent-item>
+      :areas="talent.areas"
+      ></talent-item>
     </ul>
     <h3 v-else>인재가 없습니다.</h3>
+  </base-card>
   </section>
 </template>
 
