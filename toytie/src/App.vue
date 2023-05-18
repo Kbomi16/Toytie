@@ -1,29 +1,27 @@
 <template>
-  <the-header></the-header>
-  <router-view></router-view>
+  <v-app>
+    <the-header />
+    <v-main>
+      <router-view/>
+    </v-main>
+    <the-footer />
+  </v-app>
 </template>
 
 <script>
 import TheHeader from './components/layout/TheHeader.vue';
+import TheFooter from './components/layout/TheFooter.vue';
 
 export default {
+  name: 'App',
+
   components: {
-    TheHeader
-  }
+    TheHeader,
+    TheFooter
+  },
+
+  data: () => ({
+    //
+  }),
 }
 </script>
-
-<style>
-@font-face {
-  font-family: 'system-ui', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  src: url(../fonts/AppleSDGothicNeoR.ttf);
-}
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-}
-</style>
