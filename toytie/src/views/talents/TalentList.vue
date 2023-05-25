@@ -75,6 +75,16 @@
 </script>
 
 <style scoped>
+
+section {
+  font-family: 'AppleSDGothicNeoR', sans-serif;
+  margin: 3rem 10rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+
 ul {
   list-style: none;
   margin: 0;

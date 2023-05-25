@@ -33,8 +33,8 @@
 }
 
 footer {
+  padding: 3rem 10rem;
   background-color: #AD8B73;
-  padding: 20px 0;
   text-align: center;
   color: #fff;
   font-size: 15px;

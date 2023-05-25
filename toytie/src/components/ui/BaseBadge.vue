@@ -16,6 +16,15 @@ export default {
 </script>
 
 <style scoped>
+@font-face {
+  font-family: 'AppleSDGothicNeoR';
+  src: url(@/assets/fonts/AppleSDGothicNeoR.ttf);
+}
+
+* {
+  font-family: 'AppleSDGothicNeoR', sans-serif;
+}
+
 .badge {
   background-color: #000;
   color: #fff;
