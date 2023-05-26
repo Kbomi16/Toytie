@@ -43,16 +43,31 @@ a {
   margin-right: 0.5rem;
   display: inline-block;
 }
+
+a:hover,
+a:active,
+button:hover,
+button:active {
+  background-color: #AD8B73;
+  border-color: #AD8B73;
+}
+
 .flat {
   background-color: transparent;
-  color: #000;
+  color: #AD8B73;
   border: none;
 }
 
 .outline {
   background-color: transparent;
-  color: #000;
-  border: #000 3px solid;
+  border-color: #AD8B73;
+  color: #AD8B73;
 }
 
+.flat:hover,
+.flat:active,
+.outline:hover,
+.outline:active {
+  background-color: #bdb0a7;
+}
 </style>

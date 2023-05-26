@@ -10,16 +10,16 @@ export default {
       talents: [
         {
           id: 'c1',
-          firstName: '보미',
-          lastName: '김',
+          firstName: '김',
+          lastName: '보미',
           areas: ['vue', 'javascript', 'frontend'],
           description:
             "현재 대학생이고 프론트엔드 개발자가 되고 싶습니다.",
         },
         {
           id: 'c2',
-          firstName: '보파',
-          lastName: '김',
+          firstName: '김',
+          lastName: '보파',
           areas: ['java', 'mysql', 'backend'],
           description:
           "현재 대학생이고 백엔드 개발자가 되고 싶습니다."        }

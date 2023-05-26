@@ -17,7 +17,7 @@
     props: ['id', 'firstName', 'lastName', 'areas'],
     computed: {
       fullName() {
-        return this.lastName + this.firstName
+        return this.firstName + this.lastName
       },
       talentMatchingLink() {
         return this.$route.path + '/' + this.id + '/matching'
