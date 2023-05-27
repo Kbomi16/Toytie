@@ -1,12 +1,18 @@
 <template>
+  <div>
+    <base-dialog :show="!!error" title="에러 발생" @close="handleError"></base-dialog>
+    <p>{{ error }}</p>
   <section>
     <talent-filter @change-filter="setFilters"></talent-filter>
   </section>
   <section>
     <base-card>
       <div class="controls">
-        <base-button mode="outline" @click="refresh">새로고침</base-button>
-        <base-button v-if="!isCoach && !isLoading" mode="outline" link to="/register">인재 등록하기</base-button>
+        <base-button mode="outline" @click="loadTalents(true)">새로고침</base-button>
+        <base-button v-if="!isTalent && !isLoading" link to="/register">인재 등록하기</base-button>
+      </div>
+      <div v-if="isLoading">
+        <base-spinner></base-spinner>
       </div>
       <ul v-if="hasTalents">
         <talent-item
@@ -21,6 +27,7 @@
       <h3 v-else>인재가 없습니다.</h3>
     </base-card>
   </section>
+</div>
 </template>
 
 <script>
@@ -30,10 +37,12 @@ import TalentFilter from '@/components/talents/TalentFilter.vue'
 export default {
   components: {
     TalentItem,
-    TalentFilter
+    TalentFilter,
   },
   data() {
     return {
+      isLoading: false,
+      error: null,
       activeFilters: {
         frontend: true,
         backend: true,
@@ -43,6 +52,9 @@ export default {
     }
   },
   computed: {
+    isTalent() {
+      return this.$store.getters['talents/isTalent'];
+    },
     filteredTalents() {
       const talents = this.$store.getters['talents/talents']
       return talents.filter(talent => {
@@ -61,18 +73,33 @@ export default {
       })
     },
     hasTalents() {
-      return this.$store.getters['talents/hasTalents']
+      return !this.isLoading && this.$store.getters['talents/hasTalents']
     }
+  },
+  created() {
+    this.loadTalents()
   },
   methods: {
     setFilters(updatedFilters) {
       this.activeFilters = updatedFilters
     },
-    refresh() {
-      // 새로고침 동작 구현
-    }
+    async loadTalents(refresh = false) {
+      this.isLoading = true;
+      try {
+        await this.$store.dispatch('talents/loadTalents', {
+          forceRefresh: refresh,
+        });
+      } catch (error) {
+        this.error = error.message || '잘못되었습니다!';
+      }
+      this.isLoading = false;
+    },
+    handleError() {
+      this.error = null;
+    },
   }
 }
+
 </script>
 
 <style scoped>

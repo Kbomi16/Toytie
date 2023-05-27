@@ -5,7 +5,6 @@ import TalentList from '../views/talents/TalentList.vue';
 import TalentRegister from '../views/talents/TalentRegister.vue';
 import MatchingTalent from '../views/requests/MatchingTalent.vue';
 import RequestReceived from '../views/requests/RequestReceived.vue';
-import NotFound from '../views/NotFound.vue';
 
 const routes = [
   {
@@ -31,7 +30,7 @@ const routes = [
     component: TalentDetail, 
     props: true,
     children: [
-      {path: '/matching', 
+      {path: 'matching', 
       component: MatchingTalent},
     ] },
   { 
@@ -42,11 +41,6 @@ const routes = [
     //인재 받기 요청
     path: '/requests', 
     component: RequestReceived 
-  },
-  { 
-    //인재 없음
-    path: '/:notFound(.*)', 
-    component: NotFound 
   },
 ]
 

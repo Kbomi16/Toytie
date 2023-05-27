@@ -13,7 +13,7 @@
         </section>
         <menu v-if="!fixed">
           <slot name="actions">
-            <base-button @click="tryClose">Close</base-button>
+            <base-button @click="tryClose">닫기</base-button>
           </slot>
         </menu>
       </dialog>

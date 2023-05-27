@@ -28,7 +28,7 @@
     },
     computed: {
       fullName() {
-        return this.selectedTalent.lastName + this.selectedTalent.firstName
+        return this.selectedTalent.firstName + this.selectedTalent.lastName
       },
       areas() {
         return this.selectedTalent.areas

@@ -1,10 +1,10 @@
 <template>
   <form @submit.prevent="submitForm">
-    <div>
+    <div class="form-control">
       <label for="address">오픈채팅방 주소를 입력하세요.</label>
       <input type="address" id="address" v-model.trim="address">
     </div>
-    <div>
+    <div class="form-control">
       <label for="message">Message</label>
       <textarea id="message" rows="5" v-model.trim="message"></textarea>
     </div>
@@ -31,7 +31,12 @@ export default {
         this.formIsValid = false
         return
       }
-      this.$store
+      this.$store.dispatch('requests/matchingTalent', {
+        address: this.address,
+        message: this.message,
+        talentId: this.$route.params.id
+      })
+      this.$router.replace('/talents')
     }
   }
 }

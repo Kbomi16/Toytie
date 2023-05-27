@@ -9,9 +9,11 @@ export default {
     };
 
     const response = await fetch(
-      `https://vue-http-demo-85e9e.firebaseio.com/talents/${userId}.json`,
+      `https://toytie-default-rtdb.firebaseio.com/talents/${userId}.json`,
       {
+        // 데이터가 존재하면 덮어쓰고 존재하지 않으면 생성하라고 firebase에 알림
         method: 'PUT',
+        // json 문자열로 변환한 talentDate를 첨부함
         body: JSON.stringify(talentData)
       }
     );
@@ -33,26 +35,26 @@ export default {
     }
 
     const response = await fetch(
-      `https://vue-http-demo-85e9e.firebaseio.com/coaches.json`
+      `https://toytie-default-rtdb.firebaseio.com/talents.json`
     );
     const responseData = await response.json();
 
     if (!response.ok) {
-      const error = new Error(responseData.message || 'Failed to fetch!');
+      const error = new Error(responseData.message || '데이터를 가져오지 못했습니다!');
       throw error;
     }
 
     const talents = [];
 
     for (const key in responseData) {
-      const coach = {
+      const talent = {
         id: key,
         firstName: responseData[key].firstName,
         lastName: responseData[key].lastName,
         description: responseData[key].description,
         areas: responseData[key].areas
       };
-      talents.push(coach);
+      talents.push(talent);
     }
 
     context.commit('setTalents', talents);
