@@ -35,7 +35,7 @@ export default {
         { title: '프로젝트', path: '/projects' },
         { title: '인재탐색', path: '/talents' },
         { title: '스터디', path: '/study' },
-        { title: '공지사항', path: '/info' },
+        { title: '공지사항', path: '/notice' },
         { title: '마이페이지', path: '/requests' }
       ]
     };

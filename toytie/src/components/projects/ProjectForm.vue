@@ -1,27 +1,27 @@
 <template>
   <form @submit.prevent="submitForm">
-    <div class="form-control" :class="{invalid: !firstName.isValid}">
-      <label for="firstname">성</label>
+    <div class="form-control" :class="{invalid: !projectName.isValid}">
+      <label for="projectname">프로젝트 이름/주제</label>
       <input
         type="text"
-        id="firstname"
-        v-model.trim="firstName.val"
-        @blur="clearValidity('firstName')"
+        id="projectname"
+        v-model.trim="projectName.val"
+        @blur="clearValidity('projectName')"
       />
-      <p v-if="!firstName.isValid">성을 입력해주세요.</p>
+      <p v-if="!fullName.isValid">이름을 입력해주세요.</p>
     </div>
-    <div class="form-control" :class="{invalid: !lastName.isValid}">
-      <label for="lastname">이름</label>
+    <div class="form-control" :class="{invalid: !fullName.isValid}">
+      <label for="fullname">이름</label>
       <input
         type="text"
-        id="lastname"
-        v-model.trim="lastName.val"
-        @blur="clearValidity('lastName')"
+        id="fullname"
+        v-model.trim="fullName.val"
+        @blur="clearValidity('fullName')"
       />
-      <p v-if="!lastName.isValid">이름을 입력해주세요.</p>
+      <p v-if="!fullName.isValid">이름을 입력해주세요.</p>
     </div>
     <div class="form-control" :class="{invalid: !description.isValid}">
-      <label for="description">자기소개를 해주세요. </label>
+      <label for="description">프로젝트를 소개 해주세요. </label>
       <textarea
         id="description"
         rows="5"
@@ -86,11 +86,11 @@
   emits: ['save-data'],
   data() {
     return {
-      firstName: {
+      projectName: {
         val: '',
         isValid: true
       },
-      lastName: {
+      fullName: {
         val: '',
         isValid: true
       },
@@ -111,12 +111,12 @@
     },
     validateForm() {
       this.formIsValid = true;
-      if (this.firstName.val === '') {
-        this.firstName.isValid = false;
+      if (this.projectName.val === '') {
+        this.projectName.isValid = false;
         this.formIsValid = false;
       }
-      if (this.lastName.val === '') {
-        this.lastName.isValid = false;
+      if (this.fullName.val === '') {
+        this.fullName.isValid = false;
         this.formIsValid = false;
       }
       if (this.description.val === '') {
@@ -136,8 +136,8 @@
       }
 
       const formData = {
-        first: this.firstName.val,
-        last: this.lastName.val,
+        first: this.projectName.val,
+        last: this.fullName.val,
         desc: this.description.val,
         areas: this.areas.val,
       };

@@ -112,4 +112,33 @@ img {
   height: 300px;
 }
 
+@media (max-width: 1000px) {
+  .main-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .text-container {
+    margin-right: 0;
+    text-align: center;
+  }
+
+  .image-container {
+    justify-content: center;
+  }
+
+  h2 {
+    white-space: nowrap;
+  }
+
+  .slider {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .box {
+    margin: 1rem 0;
+  }
+}
+
 </style>
