@@ -9,7 +9,7 @@
     <base-card>
       <div class="controls">
         <base-button mode="outline" @click="loadProjects(true)">새로고침</base-button>
-        <base-button v-if="!isProject || !isLoading" link to="/Pregister">프로젝트 등록하기</base-button>
+        <base-button v-if="isLoggedIn && !isProject || !isLoading" link to="/Pregister">프로젝트 등록하기</base-button>
       </div>
       <div v-if="isLoading">
         <base-spinner></base-spinner>
@@ -19,8 +19,8 @@
           v-for="project in filteredProjects"
           :key="project.id"
           :id="project.id"
-          :first-name="project.firstName"
-          :last-name="project.lastName"
+          :projectName="project.projectName"
+          :fullName="project.fullName"
           :areas="project.areas"
         ></project-item>
       </ul>
@@ -52,8 +52,11 @@ export default {
     }
   },
   computed: {
+    isLoggedIn() {
+      return this.$store.getters.inAuthenticated
+    },
     isProject() {
-      return this.$store.getters['projects/isTalent'];
+      return this.$store.getters['projects/isProject'];
     },
     filteredProjects() {
       const projects = this.$store.getters['projects/projects']

@@ -1,11 +1,12 @@
 <template>
   <li>
-    <h3>{{ fullName }}</h3>
+    <h3>{{ projectName }}</h3>
+    <p>{{ fullName }}</p>
     <div>
       <base-badge v-for="area in areas" :key="area" :type="area" :title="area"></base-badge>
     </div>
     <div class="actions">
-      <base-button mode="outline" link :to="projectMatchingLink">Matching</base-button>
+      <base-button mode="outline" link :to="projectApplyLink">Apply</base-button>
       <base-button link :to="projectDetailsLink">정보 보기</base-button>
 
     </div>
@@ -14,11 +15,8 @@
 
 <script>
   export default {
-    props: ['id', 'firstName', 'lastName', 'areas'],
+    props: ['id', 'projectName', 'fullName', 'areas'],
     computed: {
-      fullName() {
-        return this.firstName + this.lastName
-      },
       projectApplyLink() {
         return this.$route.path + '/' + this.id + '/apply'
       },

@@ -2,9 +2,10 @@ export default {
   async matchingProject(context, payload) {
     const newRequest = {
       userAddress: payload.address,
-      message: payload.message
+      message: payload.message,
+      projectId: payload.projectId // 프로젝트 아이디 추가
     };
-    const response = await fetch(`https://toytie-default-rtdb.firebaseio.com/requests/${payload.talentId}.json`, {
+    const response = await fetch(`https://toytie-default-rtdb.firebaseio.com/requests.json`, {
       method: 'POST',
       body: JSON.stringify(newRequest)
     });
@@ -17,13 +18,14 @@ export default {
     }
 
     newRequest.id = responseData.name;
-    newRequest.projectId = payload.projectId;
 
     context.commit('addRequest', newRequest);
   },
+
   async fetchRequests(context) {
-    const projectId = context.rootGetters.userId;
-    const response = await fetch(`https://toytie-default-rtdb.firebaseio.com/requests/${projectId}.json`);
+    const projectId = context.rootGetters.projectId; // 변경된 부분: userId -> projectId
+    const token = context.rootGetters.token;
+    const response = await fetch(`https://toytie-default-rtdb.firebaseio.com/requests.json?auth=` + token);
     const responseData = await response.json();
 
     if (!response.ok) {
@@ -34,13 +36,15 @@ export default {
     const requests = [];
 
     for (const key in responseData) {
-      const request = {
-        id: key,
-        talentId: projectId,
-        userAddress: responseData[key].userAddress,
-        message: responseData[key].message
-      };
-      requests.push(request);
+      if (responseData[key].projectId === projectId) {
+        const request = {
+          id: key,
+          projectId: projectId, // talentId -> projectId
+          userAddress: responseData[key].userAddress,
+          message: responseData[key].message
+        };
+        requests.push(request);
+      }
     }
 
     context.commit('setRequests', requests);

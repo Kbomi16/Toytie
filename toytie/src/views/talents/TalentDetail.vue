@@ -11,7 +11,7 @@
     <base-card>
       <header>
         <h2>관심 있으신가요? 지금 매칭해보세요!</h2>
-        <base-button link to="matchingLink">Matching</base-button>
+        <base-button link :to="matchingLink">Matching</base-button>
       </header>
       <router-view></router-view>
     </base-card>
@@ -37,7 +37,7 @@
         return this.selectedTalent.description
       },
       matchingLink() {
-        return this.$route.path + '/' + this.id + '/matching'
+        return this.$route.path  + '/matching'
       }
     },
     // vuex에 접근해 id에 대한 구체적 데이터를 페칭해 selectedTalent와 같다고 설정할거임

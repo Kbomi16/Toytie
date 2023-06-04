@@ -23,7 +23,8 @@ export default {
   },
   async fetchRequests(context) {
     const talentId = context.rootGetters.userId;
-    const response = await fetch(`https://toytie-default-rtdb.firebaseio.com/requests/${talentId}.json`);
+    const token = context.rootGetters.token;
+    const response = await fetch(`https://toytie-default-rtdb.firebaseio.com/requests/${talentId}.json?auth` + token);
     const responseData = await response.json();
 
     if (!response.ok) {

@@ -10,6 +10,8 @@ import ProjectDetail from '@/views/projects/ProjectDetail.vue'
 import ProjectRegister from '@/views/projects/ProjectRegister.vue'
 import ApplyProject from '@/views/Prequests/ApplyProject.vue'
 import NoticeView from '../views/NoticeView.vue'
+import UserAuth from '@/views/auth/UserAuth.vue'
+import MypageView from '../views/MypageView.vue'
 
 const routes = [
   {
@@ -25,9 +27,13 @@ const routes = [
   },
   {
     //로그인
-    path: '/about',
-    name: 'about',
-    component: () => import('../views/AboutView.vue')
+    path: '/auth',
+    component: UserAuth
+  },
+  {
+    // 마이페이지
+    path: '/mypage',
+    component: MypageView
   },
   {
   //프로젝트 리스트
@@ -62,7 +68,7 @@ const routes = [
     path: '/register', 
     component: TalentRegister },
   { 
-    //인재 받기 요청
+    //(요청)
     path: '/requests', 
     component: RequestReceived 
   },

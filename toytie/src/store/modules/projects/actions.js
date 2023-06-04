@@ -1,34 +1,36 @@
 export default {
   async registerProject(context, data) {
-    const userId = context.rootGetters.userId;
     const projectData = {
-      firstName: data.first,
-      lastName: data.last,
+      projectName: data.first,
+      fullName: data.last,
       description: data.desc,
       areas: data.areas
     };
 
+    const token = context.rootGetters.token;
+
     const response = await fetch(
-      `https://toytie-default-rtdb.firebaseio.com/talents/${userId}.json`,
+      `https://toytie-default-rtdb.firebaseio.com/projects.json?auth=` + token,
       {
-        // 데이터가 존재하면 덮어쓰고 존재하지 않으면 생성하라고 firebase에 알림
-        method: 'PUT',
-        // json 문자열로 변환한 talentDate를 첨부함
+        method: 'POST',
         body: JSON.stringify(projectData)
       }
     );
 
-    // const responseData = await response.json();
-
     if (!response.ok) {
-      // error ...
+      const error = new Error('프로젝트 등록에 실패했습니다.');
+      throw error;
     }
+
+    const responseData = await response.json();
+    const projectId = responseData.name; // 새로 생성된 프로젝트의 고유한 ID
 
     context.commit('registerProject', {
       ...projectData,
-      id: userId
+      id: projectId
     });
   },
+
   async loadProjects(context, payload) {
     if (!payload.forceRefresh && !context.getters.shouldUpdate) {
       return;
@@ -49,8 +51,8 @@ export default {
     for (const key in responseData) {
       const project = {
         id: key,
-        firstName: responseData[key].firstName,
-        lastName: responseData[key].lastName,
+        projectName: responseData[key].projectName,
+        fullName: responseData[key].fullName,
         description: responseData[key].description,
         areas: responseData[key].areas
       };

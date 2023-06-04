@@ -9,7 +9,7 @@
     <base-card>
       <div class="controls">
         <base-button mode="outline" @click="loadTalents(true)">새로고침</base-button>
-        <base-button v-if="!isTalent || !isLoading" link to="/register">인재 등록하기</base-button>
+        <base-button v-if="isLoggedIn && !isTalent && !isLoading" link to="/register">인재 등록하기</base-button>
       </div>
       <div v-if="isLoading">
         <base-spinner></base-spinner>
@@ -52,6 +52,9 @@ export default {
     }
   },
   computed: {
+    isLoggedIn() {
+      return this.$store.getters.inAuthenticated
+    },
     isTalent() {
       return this.$store.getters['talents/isTalent'];
     },
@@ -77,7 +80,6 @@ export default {
     }
   },
   mounted() {
-    console.log('mounted')
     this.loadTalents()
   },
   methods: {

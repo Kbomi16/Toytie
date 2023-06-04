@@ -1,9 +1,9 @@
 export default {
-  registerTalent(state, payload) {
-    state.talents.push(payload);
+  registerProject(state, payload) {
+    state.projects.push(payload);
   },
-  setTalents(state, payload) {
-    state.talents = payload;
+  setProjects(state, payload) {
+    state.projects = payload;
   },
   setFetchTimestamp(state) {
     state.lastFetch = new Date().getTime();

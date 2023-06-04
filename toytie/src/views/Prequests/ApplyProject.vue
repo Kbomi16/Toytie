@@ -31,12 +31,12 @@ export default {
         this.formIsValid = false
         return
       }
-      this.$store.dispatch('requests/matchingTalent', {
+      this.$store.dispatch('Prequests/apply', {
         address: this.address,
         message: this.message,
-        talentId: this.$route.params.id
+        projecttId: this.$route.params.id
       })
-      this.$router.replace('/talents')
+      this.$router.replace('/projects')
     }
   }
 }

@@ -33,16 +33,18 @@
 }
 
 footer {
-  padding: 3rem 10rem;
+  padding: 3rem 25rem;
   background-color: #AD8B73;
   text-align: center;
   color: #fff;
   font-size: 15px;
   font-family: 'AppleSDGothicNeoR', sans-serif;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .footer-left {
-  margin: auto 50px;
   float: left;
 }
 
@@ -50,7 +52,8 @@ footer {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex;
+  float:right;
 }
 
 ul {
@@ -81,6 +84,9 @@ img {
 
 /* 반응형 디자인을 위한 Media Query */
 @media screen and (max-width: 768px) {
+  footer {
+    padding: auto;
+  }
   .footer-left,
   .footer-right {
     flex-direction: column;
@@ -94,6 +100,7 @@ img {
 
   .footer-right {
     margin-top: 20px;
+    align-items: flex-start
   }
 
   ul {
