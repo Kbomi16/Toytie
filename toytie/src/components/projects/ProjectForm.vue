@@ -21,15 +21,15 @@
       <p v-if="!fullName.isValid">이름을 입력해주세요.</p>
     </div>
     <div class="form-control" :class="{invalid: !description.isValid}">
-      <label for="description">프로젝트를 소개 해주세요. </label>
-      <textarea
-        id="description"
-        rows="5"
-        v-model.trim="description.val"
-        @blur="clearValidity('description')"
-      ></textarea>
-      <p v-if="!description.isValid">소개를 입력해주세요.</p>
-    </div>
+    <label for="description">프로젝트를 소개 해주세요.</label>
+    <textarea
+      id="description"
+      rows="5"
+      v-model.trim="description.val"
+      @blur="clearValidity('description')"
+    ></textarea>
+    <p v-if="!description.isValid">소개를 입력해주세요.</p>
+  </div>
     
     <div class="form-control" :class="{invalid: !areas.isValid}">
 
@@ -128,21 +128,23 @@
         this.formIsValid = false;
       }
     },
-    submitForm() {
-      this.validateForm();
+submitForm() {
+  this.validateForm();
 
-      if (!this.formIsValid) {
-        return;
-      }
+  if (!this.formIsValid) {
+    return;
+  }
 
-      const formData = {
-        first: this.projectName.val,
-        last: this.fullName.val,
-        desc: this.description.val,
-        areas: this.areas.val,
-      };
-      this.$emit('save-data', formData);
-    }
+  const formData = {
+    first: this.projectName.val,
+    last: this.fullName.val,
+    desc: this.description.val.replace(/\n/g, '<br>'), // 줄바꿈 문자를 <br>로 변경
+    areas: this.areas.val,
+  };
+  this.$emit('save-data', formData);
+}
+
+
   }
 }
 
@@ -175,6 +177,10 @@ textarea {
   border: 1px solid #ccc;
   font: inherit;
 }
+textarea {
+  white-space: pre-wrap;
+}
+
 
 input:focus,
 textarea:focus {
